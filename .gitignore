@@ -1,0 +1,9 @@
+bin
+libs
+obj
+*.apk
+*.class
+*.flat
+*.dex
+*.keystore
+R.java
