@@ -1,19 +1,15 @@
 <?xml version='1.0'?>
 <manifest
     xmlns:a='http://schemas.android.com/apk/res/android' 
-    package='com.funky' 
+    package='com.funkymsg' 
     a:versionCode='0' 
     a:versionName='0'>
     <!--  -->
     <uses-permission a:name="android.permission.INTERNET"/>
     <!--  -->
-    <uses-sdk a:minSdkVersion="15"
-          a:targetSdkVersion="28"
-          a:maxSdkVersion="28" />
-    <!--  -->
-    <application a:label='Funky Msg' 
+    <application a:label='Funky Msg !!' 
         a:icon="@drawable/icon">
-        <activity a:name='com.funky.MainActivity'>
+        <activity a:name='com.funkymsg.MainActivity'>
             <intent-filter>
                 <category a:name='android.intent.category.LAUNCHER'/>
                 <action a:name='android.intent.action.MAIN'/>

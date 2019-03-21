@@ -13,7 +13,10 @@ sdkmanager "platforms;android-23"
 sdkmanager "build-tools;28.0.1"
 
 # GENERATE KEY
-keytool -genkeypair -keystore mykey.keystore -keyalg RSA -keysize 2048
+keytool -genkeypair -keystore mykey.keystore -storepass 123456 -keyalg RSA -keysize 2048
+
+
+
 
 # R.java
 aapt package -f -m -J src -M AndroidManifest.xml -S res -I ~/platforms/android-23/android.jar
@@ -34,4 +37,4 @@ aapt add output.apk classes.dex
 
 # ADB
 adb install -r output.apk
-adb shell am start -n com.funky/.MainActivity
+adb shell am start -n com.funkymsg/.MainActivity
