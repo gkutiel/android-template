@@ -7,7 +7,11 @@
     <!--  -->
     <uses-permission a:name="android.permission.INTERNET"/>
     <!--  -->
-    <application a:label='Funky Msg !!' 
+    <uses-sdk a:minSdkVersion="15"
+          a:targetSdkVersion="28"
+          a:maxSdkVersion="28" />
+    <!--  -->
+    <application a:label='Funky Msg' 
         a:icon="@drawable/icon">
         <activity a:name='com.funkymsg.MainActivity'>
             <intent-filter>

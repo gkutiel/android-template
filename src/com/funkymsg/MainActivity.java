@@ -2,9 +2,8 @@ package com.funkymsg;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.webkit.WebSettings;
+import android.webkit.WebView;
 
 public class MainActivity extends Activity {
    @Override
@@ -15,9 +14,9 @@ public class MainActivity extends Activity {
       final WebView webView = (WebView) findViewById(R.id.webView);
       final WebSettings settings = webView.getSettings();
 
-      settings.setJavaScriptEnabled(true);
+      // settings.setJavaScriptEnabled(true);
 
-      webView.setWebViewClient(new WebViewClient());
+      // webView.setWebViewClient(new WebViewClient());
       webView.loadUrl("https://www.funkymsg.com/app/");
    }
 }
