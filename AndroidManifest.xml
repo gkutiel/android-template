@@ -12,7 +12,9 @@
           a:maxSdkVersion="28" />
     <!--  -->
     <application a:label='Funky Msg' 
-        a:icon="@drawable/icon">
+        a:icon="@drawable/icon"
+        a:theme="@style/MyStyle"
+    >
         <activity a:name='com.funkymsg.MainActivity'>
             <intent-filter>
                 <category a:name='android.intent.category.LAUNCHER'/>

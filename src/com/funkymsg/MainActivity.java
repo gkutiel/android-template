@@ -1,9 +1,13 @@
 package com.funkymsg;
 
+import android.net.Uri;
 import android.app.Activity;
 import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.content.Intent;
+import android.webkit.URLUtil;
 
 public class MainActivity extends Activity {
    @Override
@@ -14,9 +18,20 @@ public class MainActivity extends Activity {
       final WebView webView = (WebView) findViewById(R.id.webView);
       final WebSettings settings = webView.getSettings();
 
-      // settings.setJavaScriptEnabled(true);
+      settings.setJavaScriptEnabled(true);
 
-      // webView.setWebViewClient(new WebViewClient());
+      webView.setWebViewClient(new WebViewClient() {
+         @Override
+         public boolean shouldOverrideUrlLoading(WebView view, String url) {
+             if( URLUtil.isNetworkUrl(url) ) 
+                 return false;
+         
+                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                 startActivity( intent );
+             return true;
+         }
+ 
+     });
       webView.loadUrl("https://www.funkymsg.com/app/");
    }
 }

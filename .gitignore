@@ -7,3 +7,4 @@ obj
 *.dex
 *.keystore
 R.java
+.gradle/
