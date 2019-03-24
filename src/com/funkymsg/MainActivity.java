@@ -19,8 +19,6 @@ public class MainActivity extends Activity {
       final WebSettings settings = webView.getSettings();
 
       settings.setJavaScriptEnabled(true);
-      settings.setAllowFileAccessFromFileURLs(false);
-      settings.setAllowUniversalAccessFromFileURLs(false);
 
       webView.setWebViewClient(new WebViewClient() {
          @Override
