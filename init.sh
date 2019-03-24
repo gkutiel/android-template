@@ -13,7 +13,7 @@ sdkmanager "platforms;android-23"
 sdkmanager "build-tools;28.0.1"
 
 # GENERATE KEY
-keytool -genkeypair -keystore mykey.keystore -storepass 123456 -keyalg RSA -keysize 2048
+keytool -genkeypair -keystore mykey.keystore -storepass 123456 -validity 999999 -keyalg RSA -keysize 2048
 
 
 
