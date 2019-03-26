@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <manifest
     xmlns:a='http://schemas.android.com/apk/res/android' 
-    package='com.funkymsg' 
+    package='com.html5test' 
     a:versionCode='3' 
     a:versionName='0'>
     <!--  -->
@@ -11,11 +11,11 @@
           a:targetSdkVersion="28"
           a:maxSdkVersion="28" />
     <!--  -->
-    <application a:label='Funky Msg' 
+    <application a:label='html5test' 
         a:icon="@drawable/icon"
         a:theme="@style/MyStyle"
     >
-        <activity a:name='com.funkymsg.MainActivity'>
+        <activity a:name='com.html5test.MainActivity'>
             <intent-filter>
                 <category a:name='android.intent.category.LAUNCHER'/>
                 <action a:name='android.intent.action.MAIN'/>

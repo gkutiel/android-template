@@ -1,13 +1,13 @@
-package com.funkymsg;
+package com.html5test;
 
 import android.app.ProgressDialog;
-import android.net.Uri;
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.content.Intent;
 import android.webkit.URLUtil;
 
 public class MainActivity extends Activity {@Override
@@ -19,6 +19,7 @@ public class MainActivity extends Activity {@Override
 		final WebSettings settings = webView.getSettings();
 
 		settings.setJavaScriptEnabled(true);
+		settings.setDomStorageEnabled(true);
 
 		final ProgressDialog progDailog = ProgressDialog.show(this, "Loading", "Please wait...", true);
 		progDailog.setCancelable(false);
@@ -26,7 +27,6 @@ public class MainActivity extends Activity {@Override
 		webView.setWebViewClient(new WebViewClient() {@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				if (URLUtil.isNetworkUrl(url)) {
-
 					progDailog.show();
 					view.loadUrl(url);
 				}
@@ -42,6 +42,6 @@ public class MainActivity extends Activity {@Override
 				progDailog.dismiss();
 			}
 		});
-		webView.loadUrl("https://funkymsg.com/");
+		webView.loadUrl("https://html5test.com/");
 	}
 }
