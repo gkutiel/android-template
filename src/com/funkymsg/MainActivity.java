@@ -1,5 +1,6 @@
 package com.funkymsg;
 
+import android.app.ProgressDialog;
 import android.net.Uri;
 import android.app.Activity;
 import android.os.Bundle;
@@ -20,18 +21,29 @@ public class MainActivity extends Activity {
 
       settings.setJavaScriptEnabled(true);
 
-      webView.setWebViewClient(new WebViewClient() {
+      final ProgressDialog progDailog = ProgressDialog.show(this, "Loading","Please wait...", true);
+        progDailog.setCancelable(false);
+      
+        webView.setWebViewClient(new WebViewClient() {
          @Override
          public boolean shouldOverrideUrlLoading(WebView view, String url) {
-             if( URLUtil.isNetworkUrl(url) ) 
-                 return false;
-         
-                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                 startActivity( intent );
-             return true;
+             if( URLUtil.isNetworkUrl(url) ) {
+
+                 progDailog.show();
+                 view.loadUrl(url);
+                }
+      else{
+          Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+          startActivity( intent );
+      }           
+            return true;
          }
- 
+
+         @Override
+            public void onPageFinished(WebView view, final String url) {
+                progDailog.dismiss();
+            }
      });
-      webView.loadUrl("https://www.funkymsg.com/app/");
+      webView.loadUrl("https://funkymsg.com/");
    }
 }
