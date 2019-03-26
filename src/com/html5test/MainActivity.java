@@ -35,29 +35,36 @@ public class MainActivity extends Activity {
         final ProgressDialog progDailog = ProgressDialog.show(this, "Loading", "Please wait...", true);
         progDailog.setCancelable(false);
 
-        webView.setOnTouchListener(new OnSwipeTouchListener(this) {
+        final GestureDetector gd = new GestureDetector(this, new SimpleOnGestureListener(){
             @Override
-            public void onSwipeDown() {
-                Log.e(TAG, "onSwipeDown");
-            }
+            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                try {
+                    final float diffY = e2.getY() - e1.getY();
+                    final int scroll = webView.getScrollY();
+                    
+                    Log.e(TAG, "onFling");
+                    Log.e(TAG, "scroll: " + scroll);
+                    Log.e(TAG, "diff: " + diffY);
+                    if(scroll == 0 && diffY > 200){
+                        Log.e(TAG, "Loading...");
+                        webView.loadUrl(webView.getUrl());
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
-            @Override
-            public void onSwipeLeft() {
-                Log.e(TAG, "onSwipeLeft");
+                return false;
             }
+        });
 
-            @Override
-            public void onSwipeUp() {
-                Log.e(TAG, "onSwipeUp");
-            }
-
-            @Override
-            public void onSwipeRight() {
-                Log.e(TAG, "onSwipeRight");
+        webView.setOnTouchListener(new OnTouchListener(){
+            public boolean onTouch(final View view, final MotionEvent e) {
+                return gd.onTouchEvent(e);
             }
         });
 
         webView.setWebViewClient(new WebViewClient() {
+            
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 if (URLUtil.isNetworkUrl(url)) {
@@ -77,62 +84,4 @@ public class MainActivity extends Activity {
         });
         webView.loadUrl("https://html5test.com/");
     }
-}
-
-class OnSwipeTouchListener implements OnTouchListener {
-
-    private GestureDetector gestureDetector;
-
-    public OnSwipeTouchListener(Context c) {
-        gestureDetector = new GestureDetector(c, new GestureListener());
-    }
-
-    public boolean onTouch(final View view, final MotionEvent motionEvent) {
-        return gestureDetector.onTouchEvent(motionEvent);
-    }
-
-    private final class GestureListener extends SimpleOnGestureListener {
-
-        private static final int SWIPE_THRESHOLD = 100;
-        private static final int SWIPE_VELOCITY_THRESHOLD = 100;
-
-        @Override
-        public boolean onDown(MotionEvent e) {
-            return false;
-        }
-
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            boolean result = false;
-            try {
-                float diffY = e2.getY() - e1.getY();
-                float diffX = e2.getX() - e1.getX();
-                if (Math.abs(diffX) > Math.abs(diffY)) {
-                    if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-                        if (diffX > 0) {
-                            onSwipeRight();
-                        } else {
-                            onSwipeLeft();
-                        }
-                    }
-                } else {
-                    if (Math.abs(diffY) > SWIPE_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
-                        if (diffY > 0) {
-                            onSwipeDown();
-                        } else {
-                            onSwipeUp();
-                        }
-                    }
-                }
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
-            return result;
-        }
-    }
-
-    public void onSwipeRight() {}
-    public void onSwipeLeft() {}
-    public void onSwipeUp() {}
-    public void onSwipeDown() {}
 }
