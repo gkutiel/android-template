@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/android.jar"/>
+	<classpathentry kind="lib" path="tools/core-lambda-stubs.jar"/>
+	<classpathentry kind="lib" path="tools/lib/apksigner.jar"/>
+	<classpathentry kind="lib" path="tools/lib/d8.jar"/>
+	<classpathentry kind="lib" path="tools/lib/dx.jar"/>
+	<classpathentry kind="lib" path="tools/lib/shrinkedAndroid.jar"/>
+	<classpathentry kind="lib" path="tools/renderscript/lib/renderscript-v8.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
